@@ -94,19 +94,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'project.wsgi.application'
 
 # Database - Add PostgreSQL support for production
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    print("else")
-    # Production database (PostgreSQL recommended)
-    DATABASES = {
-        'default': dj_database_url.parse("postgresql://postgres:MOUoeywLUJiuVJRckcnQYrWBHNeiWwIe@nozomi.proxy.rlwy.net:21813/railway")
-    }
+}
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [

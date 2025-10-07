@@ -105,7 +105,7 @@ else:
     print("else")
     # Production database (PostgreSQL recommended)
     DATABASES = {
-        'default': dj_database_url.parse("DATABASE_URL")
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
     }
 
 # Password validation

@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
+import dj_database_url
 
 load_dotenv()
 
@@ -101,14 +102,10 @@ if DEBUG:
         }
     }
 else:
+    print("else")
     # Production database (PostgreSQL recommended)
-    import dj_database_url
     DATABASES = {
-        'default': dj_database_url.config(
-            default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
-            conn_max_age=600,
-            conn_health_checks=True,
-        )
+        'default': dj_database_url.parse("postgresql://postgres:MOUoeywLUJiuVJRckcnQYrWBHNeiWwIe@nozomi.proxy.rlwy.net:21813/railway")
     }
 
 # Password validation
@@ -192,6 +189,7 @@ CORS_ALLOW_ALL_ORIGINS = DEBUG
 
 if not DEBUG:
     CORS_ALLOWED_ORIGINS = [
+        "https://blog-frontend-8gps.vercel.app/",
         os.environ.get('FRONTEND_URL', ''),
         # Add your actual frontend URLs here after deployment
     ]
